@@ -28,7 +28,7 @@ pipeline {
           sh '''
             cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
     
-            mvn sonar:sonar \
+            mvn clean verify sonar:sonar \
               -Dsonar.projectKey=spring-boot-app \
               -Dsonar.projectName=spring-boot-app \
               -Dsonar.login=$SONAR_AUTH_TOKEN \
@@ -37,6 +37,7 @@ pipeline {
         }
       }
     }
+
 
     stage('Build and Push Docker Image') {
       environment {
